@@ -15,8 +15,11 @@ void InitList(SqList &L){
 }
 
 void stochastic(SqList &L){
+//	for(int i=0;i<MaxSize;i++){
+//		L.data[i]=rand()%10;
+//	}
 	for(int i=0;i<MaxSize;i++){
-		L.data[i]=rand()%10;
+		L.data[i]=i;
 	}
 	L.length=MaxSize;
 }
@@ -36,6 +39,22 @@ bool Del_s_t_1(SqList &L,int s,int t){
 	return true;
 }
 
+bool Del_s_t_2(SqList &L,int s,int t){
+	int i,j;
+	if(s>=t || L.length==0){
+		return false;
+	}
+	for(i=0;i<L.length&&L.data[i]<s;i++);
+	if(i>=L.length){
+		return false;
+	}
+	for(j=i;j<L.length&&L.data[j]<=t;j++);
+	for(;j<L.length;i++,j++){
+		L.data[i]=L.data[j];
+	}
+	L.length=i;
+	return true;
+}
 
 int main(){
 	SqList L;
@@ -45,12 +64,17 @@ int main(){
 	for(int i=0;i<L.length;i++){
 		printf("data[%d]=%d\n",i,L.data[i]);
 	}
-	printf("%d\n",Del_s_t_1(L,2,6));
-	
+	printf("1\n");
+	Del_s_t_1(L,2,6);
 	for(int i=0;i<L.length;i++){
 		printf("data[%d]=%d\n",i,L.data[i]);
 	}
-	
+	printf("success\n");
+	Del_s_t_2(K,2,6);
+
+	for(int i=0;i<K.length;i++){
+		printf("data[%d]=%d\n",i,K.data[i]);
+	}
 	return 0;
 }
 
