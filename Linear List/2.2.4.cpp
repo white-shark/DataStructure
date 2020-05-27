@@ -24,20 +24,21 @@ void stochastic(SqList &L){
 	L.length=MaxSize;
 }
 
-bool Del_s_t_1(SqList &L,int s,int t){
-	if(s>=t || L.length<=0){
-		return false;
-	}
-	int k=0;
-	for(int i=0;i<L.length;i++){
-		if(L.data[i]<s||L.data[i]>t){
-			L.data[k]=L.data[i];
-			k++;
-		}
-	}
-	L.length=k;
-	return true;
-}
+//bool Del_s_t_1(SqList &L,int s,int t){
+//	if(s>=t || L.length<=0){
+//		return false;
+//	}
+//	int k=0;
+//	for(int i=0;i<L.length;i++){
+//		if(L.data[i]<s||L.data[i]>t){
+//			L.data[k]=L.data[i];
+//			k++;
+//		}
+//	}
+//	L.length=k;
+//	return true;
+//}
+
 
 bool Del_s_t_2(SqList &L,int s,int t){
 	int i,j;
