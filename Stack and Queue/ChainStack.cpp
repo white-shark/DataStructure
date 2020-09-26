@@ -6,6 +6,25 @@ typedef struct LNode{
     struct LNode *next;
 }LNode,*LinkStack;
 
+//栈初始化
+bool InitStack(LinkStack &S){
+    S = (LNode *)malloc(sizeof(LNode));
+    if(S==NULL){
+        return false;
+    }
+    S->next=NULL;
+    return true;
+}
+//栈判空
+bool Empty(LinkStack L){
+    if(L->next==NULL){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 //入栈
 bool EnStack(LNode *p,int e){
     LNode *s = (LNode *)malloc(sizeof(LNode));
