@@ -15,7 +15,7 @@ typedef struct BiTNode{
 }BiTNode,*BiTree;
 
 typedef struct LinkNode {
-    BiTree data;
+    BiTree *data;
     struct LinkNode *next;
 }LinkNode;
 typedef struct {
