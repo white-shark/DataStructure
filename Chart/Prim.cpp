@@ -35,7 +35,7 @@ int MinEdge(int lowcast[],int v){
 void Prim(MGraph *G,DataType a[],int v){
     int i,j,k;
     int adjvex[MaxSize];
-    int lowcast[MaxSize] = {0};
+    int lowcast[MaxSize];
     for (i = 0; i < G -> vertexNum; i++) {
         lowcast[i] = G -> edge[v][i];
         adjvex[i] = v;
@@ -57,9 +57,21 @@ void Prim(MGraph *G,DataType a[],int v){
         printf("\n");
         
         for (i = 0; i < G -> vertexNum; i++) {
-            if (G -> edge[i][j] < lowcast[i]) {
+            if (G -> edge[i][j] < lowcast[i] && G -> edge[i][j] != 0) {
                 lowcast[i] = G -> edge[i][j];
                 adjvex[i] = j;
+            }
+            else if (G -> edge[i][j] > lowcast[i]){
+                int flag = 0;
+                for (int o=0; o < MaxSize; o++) {
+                    if (i == adjvex[o]) {
+                        flag = 1;
+                    }
+                }
+                if (flag == 0) {
+                    lowcast[i] = G -> edge[i][j];
+                    adjvex[i] = j;
+                }
             }
         }
         
@@ -101,7 +113,7 @@ void CreatGraph(MGraph *G,DataType a[],int n, int e){
 int main(){
     DataType ch[] = {'A','B','C','D','E'};
     MGraph MG;
-    CreatGraph(&MG, ch, 5, 6);
+    CreatGraph(&MG, ch, 5, 8);
     for (int i = 0; i < MG.vertexNum; i++) {
         for (int j = 0; j <MG.vertexNum; j++) {
             printf("%d ",MG.edge[i][j]);
